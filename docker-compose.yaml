@@ -1,0 +1,11 @@
+version: "3.3"
+services:
+  swagger-ui:
+    ports:
+      - "80:8080"
+    environment:
+      - URL=docs/xRELOpenAPI.yaml
+      - DEEP_LINKING=true
+    volumes:
+      - .:/usr/share/nginx/html/docs/
+    image: swaggerapi/swagger-editor:latest
