@@ -7,3 +7,5 @@ To do so, just run docker-compose up
 Alternatively you can edit the Specification online [here](https://xxxxxxxxx.xxx)
 
 To have your changes included, please create a pull request.
+
+I have included both the yaml and json file, although only one is needed.
