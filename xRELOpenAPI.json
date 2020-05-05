@@ -3,7 +3,7 @@
   "info": {
     "title": "xREL API",
     "description": "xREL API Definition for JSON",
-    "version": "1.0.0"
+    "version": "1.0.1"
   },
   "externalDocs": {
     "description": "Find out more about xREL",
@@ -16,81 +16,37 @@
   ],
   "tags": [
     {
-      "name": "release/info",
-      "description": "Returns information about a single release, specified by the complete dirname or an API release id. [Find out more](https://www.xrel.to/wiki/1680/api-release-info.html)"
+      "name": "release",
+      "description": "Paths related to Scene releases"
     },
     {
-      "name": "release/latest",
-      "description": "Returns the latest releases. Also allows to browse the archive by month. [Find out more](https://www.xrel.to/wiki/2994/api-release-latest.html)"
+      "name": "p2p",
+      "description": "Paths related to P2P releases"
     },
     {
-      "name": "release/categories",
-      "description": "Returns a list of available release categories. You can use the category name in [release/browse_category](https://www.xrel.to/wiki/3751/api-release-browse-category.html). [Find out more](https://www.xrel.to/wiki/6318/api-release-categories.html)"
+      "name": "nfo",
+      "description": "Paths related to NFO"
     },
     {
-      "name": "release/browse_category",
-      "description": "Returns scene releases from the given category. [Find out more](https://www.xrel.to/wiki/3751/api-release-browse-category.html)"
+      "name": "calendar",
+      "description": "Paths related to the xREL calendar"
     },
     {
-      "name": "release/ext_info",
-      "description": "Returns all releases associated with a given Ext Info. [Find out more](https://www.xrel.to/wiki/2822/api-release-ext-info.html)"
+      "name": "ext_info",
+      "description": "Paths related to Ext Info"
     },
     {
-      "name": "release/filters",
-      "description": "Returns a list of public, predefined release filters. You can use the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html). [Find out more](https://www.xrel.to/wiki/2996/api-release-filters.html)"
-    },
-    {
-      "name": "release/addproof",
-      "description": "Adds a proof picture to a given API release id. More info on proof pictures can be found [here](https://www.xrel.to/wiki/6305/Proofs.html). [Find out more](https://www.xrel.to/wiki/6444/api-release-addproof.html)."
-    },
-    {
-      "name": "p2p/releases",
-      "description": "Browse P2P/non-scene releases. Please note that the latest release list does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work. [Find out more](https://www.xrel.to/wiki/3699/api-p2p-releases.html)"
-    },
-    {
-      "name": "p2p/categories",
-      "description": "Returns a list of available P2P release categories and their IDs. You can use the category ID in [p2p/releases](https://www.xrel.to/wiki/3699/api-p2p-releases.html). [Find out more](https://www.xrel.to/wiki/3698/api-p2p-categories.html)"
-    },
-    {
-      "name": "p2p/rls_info",
-      "description": "Returns information about a single P2P/non-scene release, specified by the complete dirname or an API P2P release id. [Find out more](https://www.xrel.to/wiki/3697/api-p2p-rls-info.html)"
-    },
-    {
-      "name": "nfo/release",
-      "description": "Returns an image of a NFO file for a given API release id. Please cache the file on your device. You may not modify the image in any way or hide the footer."
-    },
-    {
-      "name": "calendar/upcoming",
-      "description": "Returns a list upcoming movies and their releases."
-    },
-    {
-      "name": "ext_info/info",
-      "description": "Returns information about an Ext Info."
-    },
-    {
-      "name": "ext_info/media",
-      "description": "Returns media associated with an Ext Info."
-    },
-    {
-      "name": "ext_info/rate",
-      "description": "Rate an Ext Info."
-    },
-    {
-      "name": "search/releases",
-      "description": "Searches for Scene and P2P releases. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details."
-    },
-    {
-      "name": "search/ext_info",
-      "description": "Searches for Ext Infos. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details."
+      "name": "search",
+      "description": "Paths related to the xREL Search"
     }
   ],
   "paths": {
     "/release/info.json": {
       "get": {
         "tags": [
-          "release/info"
+          "release"
         ],
-        "description": "One of the two parameters is required.",
+        "description": "Returns information about a single release, specified by the complete dirname or an API release id. [Find out more](https://www.xrel.to/wiki/1680/api-release-info.html)<br>*One of the two parameters is required.",
         "operationId": "getReleaseInfoJSON",
         "parameters": [
           {
@@ -127,9 +83,9 @@
     "/release/latest.json": {
       "get": {
         "tags": [
-          "release/latest"
+          "release"
         ],
-        "description": "Returns the latest releases. Also allows to browse the archive by month.<br/><br/>Please note that the latest release list with no archive defined does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work.",
+        "description": "Returns the latest releases. Also allows to browse the archive by month. [Find out more](https://www.xrel.to/wiki/2994/api-release-latest.html)<br/><br/>Please note that the latest release list with no archive defined does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work.",
         "operationId": "getLatestReleasesJSON",
         "parameters": [
           {
@@ -176,9 +132,9 @@
     "/release/categories.json": {
       "get": {
         "tags": [
-          "release/categories"
+          "release"
         ],
-        "description": "Returns a list of available release categories. You can use the category name in [release/browse_category](https://www.xrel.to/wiki/3751/api-release-browse-category.html)<br/><br/>You should avoid calling this method repeatedly and cache its result for at least 24 hours (where possible).",
+        "description": "Returns a list of available release categories. You can use the category name in [release/browse_category](https://www.xrel.to/wiki/3751/api-release-browse-category.html). [Find out more](https://www.xrel.to/wiki/6318/api-release-categories.html)<br/><br/>You should avoid calling this method repeatedly and cache its result for at least 24 hours (where possible).",
         "operationId": "getReleasesCategoriesJSON",
         "responses": {
           "200": {
@@ -197,9 +153,9 @@
     "/release/browse_category.json": {
       "get": {
         "tags": [
-          "release/browse_category"
+          "release"
         ],
-        "description": "Returns scene releases from the given category.",
+        "description": "Returns scene releases from the given category. [Find out more](https://www.xrel.to/wiki/3751/api-release-browse-category.html)",
         "operationId": "getReleasesBrowseCategoriesJSON",
         "parameters": [
           {
@@ -255,9 +211,9 @@
     "/release/ext_info.json": {
       "get": {
         "tags": [
-          "release/ext_info"
+          "release"
         ],
-        "description": "Returns all releases associated with a given Ext Info.",
+        "description": "Returns all releases associated with a given Ext Info. [Find out more](https://www.xrel.to/wiki/2822/api-release-ext-info.html)",
         "operationId": "getReleasesExtInfoJSON",
         "parameters": [
           {
@@ -304,9 +260,9 @@
     "/release/filters.json": {
       "get": {
         "tags": [
-          "release/filters"
+          "release"
         ],
-        "description": "Returns a list of public, predefined release filters. You can use the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html).",
+        "description": "Returns a list of public, predefined release filters. You can use the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html). [Find out more](https://www.xrel.to/wiki/2996/api-release-filters.html)",
         "operationId": "getReleasesFiltersJSON",
         "responses": {
           "200": {
@@ -325,9 +281,9 @@
     "/release/addproof.json": {
       "post": {
         "tags": [
-          "release/addproof"
+          "release"
         ],
-        "description": "Returns a list of public, predefined release filters. You can use the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html).",
+        "description": "Adds a proof picture to a given API release id. More info on proof pictures can be found [here](https://www.xrel.to/wiki/6305/Proofs.html). [Find out more](https://www.xrel.to/wiki/6444/api-release-addproof.html).",
         "operationId": "getReleasesAddproofJSON",
         "parameters": [
           {
@@ -379,9 +335,9 @@
     "/p2p/releases.json": {
       "get": {
         "tags": [
-          "p2p/releases"
+          "p2p"
         ],
-        "description": "Browse P2P/non-scene releases. Optionally add one of the following arguments to filter the list. If none is present, the a list of latest releases will be returned. Please note that the latest release list does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work.",
+        "description": "Browse P2P/non-scene releases. Optionally add one of the following arguments to filter the list. If none is present, the a list of latest releases will be returned. Please note that the latest release list does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work. [Find out more](https://www.xrel.to/wiki/3699/api-p2p-releases.html)",
         "operationId": "getLatestP2PReleasesJSON",
         "parameters": [
           {
@@ -445,9 +401,9 @@
     "/p2p/categories.json": {
       "get": {
         "tags": [
-          "p2p/categories"
+          "p2p"
         ],
-        "description": "You should avoid calling this method repeatedly and cache its result for at least 24 hours (where possible).",
+        "description": "Returns a list of available P2P release categories and their IDs. You can use the category ID in [p2p/releases](https://www.xrel.to/wiki/3699/api-p2p-releases.html). [Find out more](https://www.xrel.to/wiki/3698/api-p2p-categories.html)<br><br>You should avoid calling this method repeatedly and cache its result for at least 24 hours (where possible).",
         "operationId": "getP2PReleasesCategoriesJSON",
         "responses": {
           "200": {
@@ -466,9 +422,9 @@
     "/p2p/rls_info.json": {
       "get": {
         "tags": [
-          "p2p/rls_info"
+          "p2p"
         ],
-        "description": "One of the two parameters is required.",
+        "description": "Returns information about a single P2P/non-scene release, specified by the complete dirname or an API P2P release id. [Find out more](https://www.xrel.to/wiki/3697/api-p2p-rls-info.html)<br>*One of the two parameters is required.",
         "operationId": "getP2PReleaseInfoJSON",
         "parameters": [
           {
@@ -505,9 +461,9 @@
     "/nfo/release.json": {
       "get": {
         "tags": [
-          "nfo/release"
+          "nfo"
         ],
-        "description": "-",
+        "description": "Returns an image of a NFO file for a given API release id. Please cache the file on your device. You may not modify the image in any way or hide the footer. [Find out more](https://www.xrel.to/wiki/6438/api-nfo-release.html)",
         "operationId": "getNFOReleaseJSON",
         "parameters": [
           {
@@ -543,9 +499,9 @@
     "/nfo/p2p_rls.json": {
       "get": {
         "tags": [
-          "nfo/p2p_rls"
+          "nfo"
         ],
-        "description": "-",
+        "description": "Returns an image of a NFO file for a given API release id. Please cache the file on your device. You may not modify the image in any way or hide the footer. [Find out more](https://www.xrel.to/wiki/6437/api-nfo-p2p-rls.html)",
         "operationId": "getNFOP2PReleaseJSON",
         "parameters": [
           {
@@ -581,9 +537,9 @@
     "/calendar/upcoming.json": {
       "get": {
         "tags": [
-          "calendar/upcoming"
+          "calendar"
         ],
-        "description": "Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box!",
+        "description": "Returns a list upcoming movies and their releases.<br><br>Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box!",
         "operationId": "getCalendarUpcomingJSON",
         "parameters": [
           {
@@ -612,9 +568,9 @@
     "/ext_info/info.json": {
       "get": {
         "tags": [
-          "ext_info/info"
+          "ext_info"
         ],
-        "description": "The <plot> tag contains basic HTML. A BBCode or plain text version may be available in the future, please request. Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box! The possible <own_rating> is 0 when you haven't voted yet.",
+        "description": "Returns information about an Ext Info. <br><br>The <plot> tag contains basic HTML. A BBCode or plain text version may be available in the future, please request. Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box! The possible <own_rating> is 0 when you haven't voted yet.",
         "operationId": "getExtInfoJSON",
         "parameters": [
           {
@@ -643,9 +599,9 @@
     "/ext_info/media.json": {
       "get": {
         "tags": [
-          "ext_info/media"
+          "ext_info"
         ],
-        "description": "-",
+        "description": "Returns media associated with an Ext Info.",
         "operationId": "getExtInfoMediaJSON",
         "parameters": [
           {
@@ -674,9 +630,9 @@
     "/ext_info/rate.json": {
       "post": {
         "tags": [
-          "ext_info/rate"
+          "ext_info"
         ],
-        "description": "-",
+        "description": "Rate an Ext Info",
         "operationId": "getExtInfoRateJSON",
         "parameters": [
           {
@@ -717,9 +673,9 @@
     "/search/releases.json": {
       "get": {
         "tags": [
-          "search/releases"
+          "search"
         ],
-        "description": "-",
+        "description": "Searches for Scene and P2P releases. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details.",
         "operationId": "getSearchReleasesJSON",
         "parameters": [
           {
@@ -776,9 +732,9 @@
     "/search/ext_info.json": {
       "get": {
         "tags": [
-          "search/ext_info"
+          "search"
         ],
-        "description": "-",
+        "description": "Searches for Ext Infos. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details.",
         "operationId": "getSearchExtInfoJSON",
         "parameters": [
           {
