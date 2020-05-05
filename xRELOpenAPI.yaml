@@ -2,64 +2,31 @@ openapi: 3.0.1
 info:
   title: xREL API
   description: xREL API Definition for JSON
-  version: 1.0.0
+  version: 1.0.1
 externalDocs:
   description: Find out more about xREL
   url: https://xrel.to
 servers:
 - url: https://api.xrel.to/v2
 tags:
-- name: release/info
-  description: Returns information about a single release, specified by the complete
-    dirname or an API release id. [Find out more](https://www.xrel.to/wiki/1680/api-release-info.html)
-- name: release/latest
-  description: Returns the latest releases. Also allows to browse the archive by month.
-    [Find out more](https://www.xrel.to/wiki/2994/api-release-latest.html)
-- name: release/categories
-  description: Returns a list of available release categories. You can use the category
-    name in [release/browse_category](https://www.xrel.to/wiki/3751/api-release-browse-category.html).
-    [Find out more](https://www.xrel.to/wiki/6318/api-release-categories.html)
-- name: release/browse_category
-  description: Returns scene releases from the given category. [Find out more](https://www.xrel.to/wiki/3751/api-release-browse-category.html)
-- name: release/ext_info
-  description: Returns all releases associated with a given Ext Info. [Find out more](https://www.xrel.to/wiki/2822/api-release-ext-info.html)
-- name: release/filters
-  description: Returns a list of public, predefined release filters. You can use the
-    filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html).
-    [Find out more](https://www.xrel.to/wiki/2996/api-release-filters.html)
-- name: release/addproof
-  description: Adds a proof picture to a given API release id. More info on proof
-    pictures can be found [here](https://www.xrel.to/wiki/6305/Proofs.html). [Find
-    out more](https://www.xrel.to/wiki/6444/api-release-addproof.html).
-- name: p2p/releases
-  description: Browse P2P/non-scene releases.
-              Please note that the latest release list does NOT return a total number of pages.
-              Around 1000 releases are available for browsing in that mode. per_page continues to work.
-              [Find out more](https://www.xrel.to/wiki/3699/api-p2p-releases.html)
-- name: p2p/categories
-  description: Returns a list of available P2P release categories and their IDs. You can use the category ID in [p2p/releases](https://www.xrel.to/wiki/3699/api-p2p-releases.html). [Find out more](https://www.xrel.to/wiki/3698/api-p2p-categories.html)
-- name: p2p/rls_info
-  description: Returns information about a single P2P/non-scene release, specified by the complete dirname or an API P2P release id. [Find out more](https://www.xrel.to/wiki/3697/api-p2p-rls-info.html)
-- name: nfo/release
-  description: Returns an image of a NFO file for a given API release id. Please cache the file on your device. You may not modify the image in any way or hide the footer.
-- name: calendar/upcoming
-  description: Returns a list upcoming movies and their releases.
-- name: ext_info/info
-  description: Returns information about an Ext Info.
-- name: ext_info/media
-  description: Returns media associated with an Ext Info.
-- name: ext_info/rate
-  description: Rate an Ext Info.
-- name: search/releases
-  description: Searches for Scene and P2P releases. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details.
-- name: search/ext_info
-  description: Searches for Ext Infos. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details.
+- name: release
+  description: Paths related to Scene releases
+- name: p2p
+  description: Paths related to P2P releases
+- name: nfo
+  description: Paths related to NFO
+- name: calendar
+  description: Paths related to the xREL calendar
+- name: ext_info
+  description: Paths related to Ext Info
+- name: search
+  description: Paths related to the xREL Search
 paths:
   /release/info.json:
     get:
       tags:
-      - release/info
-      description: One of the two parameters is required.
+      - release
+      description: Returns information about a single release, specified by the complete dirname or an API release id. [Find out more](https://www.xrel.to/wiki/1680/api-release-info.html)<br>*One of the two parameters is required.
       operationId: getReleaseInfoJSON
       parameters:
       - name: id
@@ -82,9 +49,8 @@ paths:
   /release/latest.json:
     get:
       tags:
-      - release/latest
-      description: Returns the latest releases. Also allows to browse the archive
-        by month.<br/><br/>Please note that the latest release list with no archive
+      - release
+      description: Returns the latest releases. Also allows to browse the archive by month. [Find out more](https://www.xrel.to/wiki/2994/api-release-latest.html)<br/><br/>Please note that the latest release list with no archive
         defined does NOT return a total number of pages. Around 1000 releases are
         available for browsing in that mode. per_page continues to work.
       operationId: getLatestReleasesJSON
@@ -117,9 +83,8 @@ paths:
   /release/categories.json:
     get:
       tags:
-      - release/categories
-      description: Returns a list of available release categories. You can use the
-        category name in [release/browse_category](https://www.xrel.to/wiki/3751/api-release-browse-category.html)<br/><br/>You
+      - release
+      description: Returns a list of available release categories. You can use the category name in [release/browse_category](https://www.xrel.to/wiki/3751/api-release-browse-category.html). [Find out more](https://www.xrel.to/wiki/6318/api-release-categories.html)<br/><br/>You
         should avoid calling this method repeatedly and cache its result for at least
         24 hours (where possible).
       operationId: getReleasesCategoriesJSON
@@ -133,8 +98,8 @@ paths:
   /release/browse_category.json:
     get:
       tags:
-      - release/browse_category
-      description: Returns scene releases from the given category.
+      - release
+      description: Returns scene releases from the given category. [Find out more](https://www.xrel.to/wiki/3751/api-release-browse-category.html)
       operationId: getReleasesBrowseCategoriesJSON
       parameters:
       - name: category_name
@@ -171,8 +136,8 @@ paths:
   /release/ext_info.json:
     get:
       tags:
-      - release/ext_info
-      description: Returns all releases associated with a given Ext Info.
+      - release
+      description: Returns all releases associated with a given Ext Info. [Find out more](https://www.xrel.to/wiki/2822/api-release-ext-info.html)
       operationId: getReleasesExtInfoJSON
       parameters:
       - name: id
@@ -202,9 +167,8 @@ paths:
   /release/filters.json:
     get:
       tags:
-      - release/filters
-      description: Returns a list of public, predefined release filters. You can use
-        the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html).
+      - release
+      description: Returns a list of public, predefined release filters. You can use the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html). [Find out more](https://www.xrel.to/wiki/2996/api-release-filters.html)
       operationId: getReleasesFiltersJSON
       responses:
         200:
@@ -216,9 +180,8 @@ paths:
   /release/addproof.json:
     post:
       tags:
-      - release/addproof
-      description: Returns a list of public, predefined release filters. You can use
-        the filter ID in [release/latest](https://www.xrel.to/wiki/2994/api-release-latest.html).
+      - release
+      description: Adds a proof picture to a given API release id. More info on proof pictures can be found [here](https://www.xrel.to/wiki/6305/Proofs.html). [Find out more](https://www.xrel.to/wiki/6444/api-release-addproof.html).
       operationId: getReleasesAddproofJSON
       parameters:
       - name: id
@@ -253,8 +216,8 @@ paths:
   /p2p/releases.json:
     get:
       tags:
-      - p2p/releases
-      description: Browse P2P/non-scene releases. Optionally add one of the following arguments to filter the list. If none is present, the a list of latest releases will be returned. Please note that the latest release list does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work.
+      - p2p
+      description: Browse P2P/non-scene releases. Optionally add one of the following arguments to filter the list. If none is present, the a list of latest releases will be returned. Please note that the latest release list does NOT return a total number of pages. Around 1000 releases are available for browsing in that mode. per_page continues to work. [Find out more](https://www.xrel.to/wiki/3699/api-p2p-releases.html)
       operationId: getLatestP2PReleasesJSON
       parameters:
       - name: per_page
@@ -295,8 +258,8 @@ paths:
   /p2p/categories.json:
       get:
         tags:
-        - p2p/categories
-        description: You should avoid calling this method repeatedly and cache its result for at least
+        - p2p
+        description: Returns a list of available P2P release categories and their IDs. You can use the category ID in [p2p/releases](https://www.xrel.to/wiki/3699/api-p2p-releases.html). [Find out more](https://www.xrel.to/wiki/3698/api-p2p-categories.html)<br><br>You should avoid calling this method repeatedly and cache its result for at least
           24 hours (where possible).
         operationId: getP2PReleasesCategoriesJSON
         responses:
@@ -309,8 +272,8 @@ paths:
   /p2p/rls_info.json:
       get:
         tags:
-        - p2p/rls_info
-        description: One of the two parameters is required.
+        - p2p
+        description: Returns information about a single P2P/non-scene release, specified by the complete dirname or an API P2P release id. [Find out more](https://www.xrel.to/wiki/3697/api-p2p-rls-info.html)<br>*One of the two parameters is required.
         operationId: getP2PReleaseInfoJSON
         parameters:
         - name: id
@@ -333,8 +296,8 @@ paths:
   /nfo/release.json:
       get:
         tags:
-        - nfo/release
-        description: "-"
+        - nfo
+        description: Returns an image of a NFO file for a given API release id. Please cache the file on your device. You may not modify the image in any way or hide the footer. [Find out more](https://www.xrel.to/wiki/6438/api-nfo-release.html)
         operationId: getNFOReleaseJSON
         parameters:
         - name: id
@@ -355,8 +318,8 @@ paths:
   /nfo/p2p_rls.json:
       get:
         tags:
-        - nfo/p2p_rls
-        description: "-"
+        - nfo
+        description: Returns an image of a NFO file for a given API release id. Please cache the file on your device. You may not modify the image in any way or hide the footer. [Find out more](https://www.xrel.to/wiki/6437/api-nfo-p2p-rls.html)
         operationId: getNFOP2PReleaseJSON
         parameters:
         - name: id
@@ -377,8 +340,8 @@ paths:
   /calendar/upcoming.json:
     get:
       tags:
-      - calendar/upcoming
-      description: Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box!
+      - calendar
+      description: Returns a list upcoming movies and their releases.<br><br>Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box!
       operationId: getCalendarUpcomingJSON
       parameters:
         - name: country
@@ -396,8 +359,8 @@ paths:
   /ext_info/info.json:
     get:
       tags:
-      - ext_info/info
-      description: The <plot> tag contains basic HTML. A BBCode or plain text version may be available in the future, please request. Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box! The possible <own_rating> is 0 when you haven't voted yet.
+      - ext_info
+      description: Returns information about an Ext Info. <br><br>The <plot> tag contains basic HTML. A BBCode or plain text version may be available in the future, please request. Please note that you can not embed (hot link) any images from our server. Download and cache the file on your box! The possible <own_rating> is 0 when you haven't voted yet.
       operationId: getExtInfoJSON
       parameters:
         - name: id
@@ -415,8 +378,8 @@ paths:
   /ext_info/media.json:
     get:
       tags:
-      - ext_info/media
-      description: '-'
+      - ext_info
+      description: Returns media associated with an Ext Info.
       operationId: getExtInfoMediaJSON
       parameters:
         - name: id
@@ -434,8 +397,8 @@ paths:
   /ext_info/rate.json:
     post:
       tags:
-      - ext_info/rate
-      description: '-'
+      - ext_info
+      description: Rate an Ext Info
       operationId: getExtInfoRateJSON
       parameters:
         - name: id
@@ -462,8 +425,8 @@ paths:
   /search/releases.json:
     get:
       tags:
-      - search/releases
-      description: '-'
+      - search
+      description: Searches for Scene and P2P releases. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details.
       operationId: getSearchReleasesJSON
       parameters:
       - name: q
@@ -500,8 +463,8 @@ paths:
   /search/ext_info.json:
     get:
       tags:
-      - search/ext_info
-      description: '-'
+      - search
+      description: Searches for Ext Infos. Please note that additional search rate limiting applies. See [here](https://www.xrel.to/wiki/2727/api-rate-limiting.html) for details.
       operationId: getSearchExtInfoJSON
       parameters:
       - name: q
