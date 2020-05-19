@@ -3,7 +3,7 @@
   "info": {
     "title": "xREL API",
     "description": "xREL API Definition for JSON",
-    "version": "1.0.1"
+    "version": "1.0.2"
   },
   "externalDocs": {
     "description": "Find out more about xREL",
@@ -1180,7 +1180,17 @@
             "type": "integer"
           },
           "result": {
-            "$ref": "#/components/schemas/release"
+            "type": "array",
+            "items": {
+              "oneOf": [
+                {
+                  "$ref": "#/components/schemas/release"
+                },
+                {
+                  "$ref": "#/components/schemas/release_p2p"
+                }
+              ]
+            }
           }
         }
       },
