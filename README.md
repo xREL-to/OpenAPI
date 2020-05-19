@@ -1,11 +1,7 @@
 # xREL OpenAPI Specifications
 
 This repository contains an unofficial OpenAPI Specification for xREL.
-It was created using Swagger and contains a docker-compose to run the Swagger UI locally.
-To do so, just run docker-compose up
 
-Alternatively you can edit the Specification online [here](https://editor.swagger.io/?url=https://raw.githubusercontent.com/MikeMatau/xREL-OpenAPI/master/xRELOpenAPI.yaml)
-
-To have your changes included, please create a pull request.
+You can edit the Specification online [here](https://editor.swagger.io/?url=https://raw.githubusercontent.com/MikeMatau/xREL-OpenAPI/master/xRELOpenAPI.yaml) and export the json and yaml file to create a pull request
 
 I have included both the yaml and json file, although only one is needed.
