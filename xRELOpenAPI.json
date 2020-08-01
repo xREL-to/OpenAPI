@@ -11,6 +11,9 @@
   },
   "servers": [
     {
+      "url": "https://xrel-api.nfos.to/v2"
+    },
+    {
       "url": "https://api.xrel.to/v2"
     }
   ],

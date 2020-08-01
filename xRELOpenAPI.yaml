@@ -1,12 +1,13 @@
 openapi: 3.0.1
 info:
   title: xREL API
-  description: xREL API Definition for JSON
-  version: 1.0.2
+  description: 'xREL API Definition (Response format: JSON)'
+  version: 1.1.0
 externalDocs:
   description: Find out more about xREL
-  url: https://xrel.to
+  url: https://www.xrel.to
 servers:
+- url: https://xrel-api.nfos.to/v2
 - url: https://api.xrel.to/v2
 tags:
 - name: release
@@ -26,17 +27,23 @@ paths:
     get:
       tags:
       - release
-      description: Returns information about a single release, specified by the complete dirname or an API release id. [Find out more](https://www.xrel.to/wiki/1680/api-release-info.html)<br>*One of the two parameters is required.
+      description: >
+        Returns information about a single release,
+        specified by the complete dirname or an API release ID.
+        <br>[Find out more](https://www.xrel.to/wiki/1680/api-release-info.html)
+        <br><small>* One of the two parameters is required.</small>
       operationId: getReleaseInfoJSON
       parameters:
       - name: id
         in: query
-        description: f638d1cfec8d
+        description: API release ID
+        example: f638d1cfec8d
         schema:
           type: string
       - name: dirname
         in: query
-        description: Keinohrhasen.German.AC3.DVDRip.XviD-CRUCiAL
+        description: Full dirname
+        example: Keinohrhasen.German.AC3.DVDRip.XviD-CRUCiAL
         schema:
           type: string
       responses:
